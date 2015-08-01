@@ -1,0 +1,10 @@
+{
+	"name": "pagSeguro",
+	"description": "comunicacao com a API do pagSeguro",
+	"version": "0.0.1",
+	"private": true,
+	"dependencies": {
+		"express": "x",
+		"mysql": "x"
+	}
+}

@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	$('#btnForm').click(callPagSeguro);
+	$('#btnForm').click(salvarUsuario);
 });
 
 function callPagSeguro(){
@@ -15,6 +15,23 @@ function callPagSeguro(){
 		error: function(data){
 			alert('erro: '+data)
 		}
-	});
+	})
+};
 
+function salvarUsuario(){
+	var n = $('#txtNome').val();
+	var e = $('#txtEmail').val();
+	$.ajax({
+		type: 'POST',
+		url: 'http://localhost:3001/salvar',
+		cache: false,
+		datatype: 'jsonp',
+		data: { 'nome' : n, 'email' : e },
+		success: function(data){
+			//alert('codigo: '+data.checkout.code);
+		},
+		error: function(data){
+			//alert('erro: '+data)
+		}
+	});
 }

@@ -3,6 +3,7 @@ var https = require('https');
 var express = require('express');
 var parseString = require('xml2js').parseString;
 var cors = require('cors');
+var mysql = require('mysql');
 
 var app = express();
 
@@ -22,11 +23,34 @@ var host = 'ws.sandbox.pagseguro.uol.com.br';
 var port = 443;
 var path = '/v2/checkout?';
 
+//conexão db
+var conn = mysql.createConnection({
+		host: "localhost",
+		user: "root",
+		password: "root",
+		database: "entendoDireito"
+	});
+
+conn.connect(function(err){
+	if(!err) {
+	    console.log("Database is connected ... \n\n");  
+	} else {
+	    console.log("Error connecting database ... \n\n");  
+	}
+});
 
 app.use(cors());
 
 //realiza uma nova venda para o pagSeguro
 app.get('/pagSeguro', function(req, res){
+
+	conn.query('SELECT * from usuario', function(err, rows, fields) {
+		conn.end();
+  		if (!err)
+    		console.log('The solution is: ', rows);
+  		else
+    	console.log('Error while performing Query.');
+  	});
 
 	//monta url completa com os valores recebidos
 	path += 'email='+email+'&token='+token+'&currency='+currency+'&itemId1='+itemId1+'&itemAmount1='+itemAmount1+'&itemQuantity1='+itemQuantity1+'&itemDescription1='+itemDescription1;

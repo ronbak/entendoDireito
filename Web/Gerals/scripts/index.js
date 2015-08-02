@@ -1,3 +1,5 @@
+var app = angular.module('cadastroCorrespondente', []);
+
 $(document).ready(function(){
 	$('#btnForm').click(salvarUsuario);
 });

@@ -1,0 +1,27 @@
+<html ng-app="cadastroCorrespondente">
+	<head>
+		<!--frameworks -->
+		<script src="../../Gerals/scripts/jquery-2.1.4.min.js"></script>
+		<script src="../../Gerals/scripts/angular.min.js"></script>
+
+		<!--javascripts -->
+		<script src="scripts/index.js"></script>
+
+		<!--CSS -->
+		<link rel="stylesheet" type="text/css" href="../../Gerals/Css/bootstrap/css/bootstrap.min.css" />
+
+	</head>
+	<body>
+
+		<div ng-controller="usuarioController as usuario">
+			<div ng-repeat="u in usuario.users">
+				nome: {{u.name}}
+			</div>
+		</div>
+		<form id='formulario' class="form-group">
+			nome: <input type="text" id="txtNome" class="form-control">
+			email: <input type="text" id="txtEmail" class="form-control">
+			<button id="btnForm" type="button" class="btn btn-default">Salvar</button>
+		</form>
+	</body>
+</html>

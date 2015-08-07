@@ -14,14 +14,26 @@
 	<body>
 
 		<div ng-controller="usuarioController as usuario">
+
 			<div ng-repeat="u in usuario.users">
 				nome: {{u.name}}
 			</div>
 		</div>
-		<form id='formulario' class="form-group">
-			nome: <input type="text" id="txtNome" class="form-control">
-			email: <input type="text" id="txtEmail" class="form-control">
-			<button id="btnForm" type="button" class="btn btn-default">Salvar</button>
+
+		<form id='formulario' class="form-group" ng-controller="cadastroController as cadastro">
+			<div id='divEmail'>
+				email: <input type="text" id="txtEmail" class="form-control">
+				<button id="btnChecaEmail" type="button" class="btn btn-default" ng-click="mudaStatus()">Checar</button>
+			</div>
+			<div id="divCadastro" ng-show="cadastro.cad.existe">
+				nome: <input type="text" id="txtNome" class="form-control">
+				
+				<div ng-controller="escolaridadeController" class="form-group">
+	        		Escolaridade: <select ng-model="ddlEscolaridade" ng-options="education.name for education in Education track by education.id">
+	        		</select>
+	    		</div>
+				<button id="btnForm" type="button" class="btn btn-default">Salvar</button>
+			</div>
 		</form>
 	</body>
 </html>

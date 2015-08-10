@@ -2,38 +2,90 @@
 	<head>
 		<!--frameworks -->
 		<script src="../../Gerals/scripts/jquery-2.1.4.min.js"></script>
+		<script src="../../Gerals/scripts/select2.min.js"></script>
 		<script src="../../Gerals/scripts/angular.min.js"></script>
+		
 
 		<!--javascripts -->
 		<script src="scripts/index.js"></script>
 
+
 		<!--CSS -->
 		<link rel="stylesheet" type="text/css" href="../../Gerals/Css/bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../Gerals/Css/select2.css" />
 
 	</head>
-	<body>
+	<body ng-controller="cadastroController as cadastro">
 
-		<div ng-controller="usuarioController as usuario">
+		<!--<div ng-controller="usuarioController as usuario">
 
 			<div ng-repeat="u in usuario.users">
 				nome: {{u.name}}
 			</div>
-		</div>
+		</div> -->
 
-		<form id='formulario' class="form-group" ng-controller="cadastroController as cadastro">
-			<div id='divEmail'>
-				email: <input type="text" id="txtEmail" class="form-control">
-				<button id="btnChecaEmail" type="button" class="btn btn-default" ng-click="mudaStatus()">Checar</button>
+		<form id='formularioEmail' name='formularioEmail' class="form-group">
+			<!--email -->
+			<div class="form-group" ng-class="{ 'has-error' : formulario.email.$invalid && !formulario.email.$pristine }">
+				<label>Email: </label>
+				<input type="email" id="txtEmail" name='txtEmail' class="form-control" ng-model='txtEmail' required>
+				<p ng-show="formularioEmail.txtEmail.$invalid  && !formularioEmail.txtEmail.$pristine" class="help-block">Entre com o seu email.</p>
 			</div>
-			<div id="divCadastro" ng-show="cadastro.cad.existe">
-				nome: <input type="text" id="txtNome" class="form-control">
-				
-				<div ng-controller="escolaridadeController" class="form-group">
-	        		Escolaridade: <select ng-model="ddlEscolaridade" ng-options="education.name for education in Education track by education.id">
-	        		</select>
-	    		</div>
-				<button id="btnForm" type="button" class="btn btn-default">Salvar</button>
+			<button id="btnChecaEmail" type="button" class="btn btn-default" ng-click="mudaStatus()"
+				ng-disabled="!formularioEmail.txtEmail.$valid">Continuar</button>
+
+		</form>
+
+
+		<form id='formCompleto' ng-show="!cadastro.cad.existe" name='formCompleto'>
+			<!--cpf -->
+			<div class="form-group">
+				<label >CPF:</label>
+				<input type="text" id="txtCpf" class="form-control" name='txtCpf' ng-model='txtCpf' required>
+				<p ng-show="formCompleto.txtCpf.$invalid  && !formCompleto.txtNome.$pristine" class="help-block">Informe seu CPF</p>
 			</div>
+			<!--nome -->
+			<div class="form-group">
+				<label >Nome completo:</label>
+				<input type="text" id="txtNome" class="form-control" name='txtNome' ng-model='txtNome' required>
+				<p ng-show="formCompleto.txtNome.$invalid  && !formCompleto.txtNome.$pristine" class="help-block">Informe seu nome</p>
+			</div>
+
+			<!--Data nascimento -->
+			<div class="form-group">
+				<label >Data nascimento:</label>
+				<input type="text" id="txtNascimento" class="form-control" name='txtNascimento' ng-model='txtNascimento' required>
+				<p ng-show="formCompleto.txtNascimento.$invalid  && !formCompleto.txtNascimento.$pristine" class="help-block">Informe sua data de nascimento</p>
+			</div>
+
+			<!-- escolaridade -->
+			<div class="form-group" >
+		        <label >Formacao:</label>
+		        <select  ng-init="populaEducacao()" ng-model="ddlEscolaridade" ng-options="educacao.st_education for educacao in education track by educacao.id_education" name="ddlEscolaridade">
+		        </select>
+		        <p ng-show="formCompleto.ddlEscolaridade.$invalid  && !formCompleto.ddlEscolaridade.$pristine" class="help-block">Selecione sua formacao</p>
+		    </div>
+
+
+		    <!-- Cidades Atuacao -->
+		    <label >Cidades Atuacao:</label>
+			<div class="form-group" >
+		        <label >Estado:</label>
+		        <select  ng-init="populaEstados()" ng-model="ddlEstados" ng-options="estado.st_state for estado in estados track by estado.id_State" ng-change="populaCidades()" name="ddlEstados" class="form-control">
+		        </select>
+		        <label >Cidade:</label>
+		        <select  ng-model="ddlCidade" ng-options="cidade.st_city for cidade in cidades track by cidade.id_City"  name="ddlCidade" ng-change="populaCidadesEscolhidas()" class="form-control">
+		        </select>
+		        <div class="form-group">
+			        <button ng-repeat="c in cidadesEscolhidas" id="{{c.id_City}}" ng-click="excluiCidade(c.id_City)"  class="btn btn-primary"> 
+			        	{{c.st_city}}
+			        </button>	
+		        </div>
+		        
+		    </div>
+		    
+
+			<button id="btnForm" type="button" class="btn btn-default" ng-click="salvaCorrespondente()"ng-disabled="formCompleto.$invalid">Salvar</button>
 		</form>
 	</body>
 </html>

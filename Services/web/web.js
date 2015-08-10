@@ -51,11 +51,44 @@ app.post('/salvar', function(req, res){
 	});
 });
 
+//verifica se um email existe
 app.get('/checaEmail/:email', function(req, res){
-
-	var conn = conectaBanco();
 	var query = 'SELECT COUNT(*) AS count FROM user WHERE st_email  = "'+req.params.email+'"';
 
+	realizaConsulta(query, res);
+});
+
+//popula educacao
+app.get('/populaEducacao/', function(req, res){
+	var query = 'SELECT *  FROM education';
+
+	realizaConsulta(query, res);
+});
+
+//popula estados
+app.get('/populaEstados/', function(req, res){
+	var query = 'SELECT *  FROM State';
+
+	realizaConsulta(query, res);
+});
+
+//popula cidades pelo estado
+app.get('/populaCidades/:uf', function(req, res){
+	
+	var query = 'SELECT *  FROM City WHERE id_State ='+req.params.uf;
+
+	realizaConsulta(query, res);
+});
+
+//executa
+app.listen(3001);
+console.log('executando');
+
+
+function realizaConsulta(query, res){
+
+	var conn = conectaBanco();
+	console.log(query);
 	conn.query(query, function(err, rows, fields) {
 
   		if (!err){
@@ -69,10 +102,4 @@ app.get('/checaEmail/:email', function(req, res){
   		conn.end();
   		console.log('conexão encerrada.');
   	});
-	
-
-});
-
-//executa
-app.listen(3001);
-console.log('executando');
+}

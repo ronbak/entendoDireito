@@ -54,29 +54,30 @@ app.post('/salvar', function(req, res){
 //verifica se um email existe
 app.get('/checaEmail/:email', function(req, res){
 	var query = 'SELECT COUNT(*) AS count FROM user WHERE st_email  = "'+req.params.email+'"';
-
 	realizaConsulta(query, res);
 });
 
 //popula educacao
 app.get('/populaEducacao/', function(req, res){
 	var query = 'SELECT *  FROM education';
-
 	realizaConsulta(query, res);
 });
 
 //popula estados
 app.get('/populaEstados/', function(req, res){
 	var query = 'SELECT *  FROM State';
-
 	realizaConsulta(query, res);
 });
 
 //popula cidades pelo estado
 app.get('/populaCidades/:uf', function(req, res){
-	
 	var query = 'SELECT *  FROM City WHERE id_State ='+req.params.uf;
+	realizaConsulta(query, res);
+});
 
+//popula tipo telefone
+app.get('/tipoTelefone/', function(req, res){
+	var query = 'SELECT *  FROM phoneType';
 	realizaConsulta(query, res);
 });
 

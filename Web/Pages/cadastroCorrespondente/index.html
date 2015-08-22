@@ -81,7 +81,23 @@
 			        	{{c.st_city}}
 			        </button>	
 		        </div>
-		        
+		    </div>
+
+
+		    <!-- Telefones-->
+		    <label >telefones:</label>
+			<div class="form-group" >
+		        <label >Numero:</label>
+		        <input type="number"  ng-model="txtTelefone" class="form-control">
+		        <label >Tipo:</label>
+		        <select ng-init="populaTipoTelefone()" ng-model="ddlTipoTelefone" ng-options="tt.st_phoneType for tt in tipoTelefone track by tt.id_phoneType"  name="ddlTipoTelefone"  class="form-control">
+		        </select>
+		        <button class="btn btn-primary" ng-click="populaTelefones()"> Adicionar </button>
+		        <div class="form-group">
+			        <button ng-repeat="t in listaTelefones" id="{{t.txtTelefone}}"   class="btn btn-primary"> 
+			        	{{t.txtTelefone}}
+			        </button>	
+		        </div>
 		    </div>
 		    
 

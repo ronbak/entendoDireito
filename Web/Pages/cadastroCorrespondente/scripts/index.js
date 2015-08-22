@@ -10,7 +10,8 @@
 
   app.controller('cadastroController', function($scope, $http){
   	this.cad = dados;
-  	$scope.cidadesEscolhidas = []
+  	$scope.cidadesEscolhidas = [];
+  	$scope.listaTelefones = [];
 
   	//verifica se ja existe o email
   	$scope.mudaStatus = function(){
@@ -85,7 +86,6 @@
 	$scope.populaCidadesEscolhidas = function(){
 		//debugger
 		if($scope.ddlCidade && !verificaCidadeSelecionada($scope.ddlCidade)){
-
 			$scope.cidadesEscolhidas.push($scope.ddlCidade);
 		}
 	}
@@ -113,6 +113,36 @@
 		return cidadeJaSelecionada;
 	}
 
+
+	//popula dropdown tipo telefone 
+	$scope.populaTipoTelefone = function(){
+		//debugger
+		$http.get('http://localhost:3001/tipoTelefone/')
+	    .success(
+	        function(data) {
+	        	$scope.tipoTelefone = data;
+			}
+    	)
+    	.error(
+    		function(data){
+    			//alert('erro ao conectar');
+    		}
+    	)
+	};
+
+	//cria lista com telefones
+	$scope.populaTelefones = function(){
+		
+		if($scope.txtTelefone && $scope.ddlTipoTelefone){
+			populaLista = [];
+			populaLista.txtTelefone = $scope.txtTelefone;
+			populaLista.st_tipo = $scope.ddlTipoTelefone;
+			
+			$scope.listaTelefones.push(populaLista);
+		}
+		
+	}
+
 	//salva correspondente
 	$scope.salvaCorrespondente = function(){
 		console.log($scope);
@@ -127,7 +157,7 @@
 })();
 
 $(document).ready(function(){
-    $('#ddlEstados').select2();
+    
 });
 
 function callPagSeguro(){

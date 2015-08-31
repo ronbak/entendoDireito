@@ -94,13 +94,12 @@
 		        </select>
 		        <button class="btn btn-primary" ng-click="populaTelefones()"> Adicionar </button>
 		        <div class="form-group">
-			        <button ng-repeat="t in listaTelefones" id="{{t.txtTelefone}}"   class="btn btn-primary"> 
-			        	{{t.txtTelefone}}
-			        </button>	
+			        <div ng-repeat="t in listaTelefones" id="{{t.txtTelefone}}" > 
+			        	{{t.txtTelefone}} <button id="{{t.txtTelefone}}" class="btn btn-primary"ng-click="excluiTelefone(t.txtTelefone)">remover</button>
+			        </div>	
 		        </div>
 		    </div>
 		    
-
 			<button id="btnForm" type="button" class="btn btn-default" ng-click="salvaCorrespondente()"ng-disabled="formCompleto.$invalid">Salvar</button>
 		</form>
 	</body>

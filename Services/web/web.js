@@ -71,7 +71,8 @@ app.get('/populaEstados/', function(req, res){
 
 //popula cidades pelo estado
 app.get('/populaCidades/:uf', function(req, res){
-	var query = 'SELECT *  FROM City WHERE id_State ='+req.params.uf;
+	var dados = {uf:req.params.uf};
+	var query = 'SELECT *  FROM City WHERE id_State ='+dados.uf;
 	realizaConsulta(query, res);
 });
 

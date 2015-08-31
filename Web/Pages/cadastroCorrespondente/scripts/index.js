@@ -139,8 +139,19 @@
 			populaLista.st_tipo = $scope.ddlTipoTelefone;
 			
 			$scope.listaTelefones.push(populaLista);
+		}	
+	}
+
+	//exclui telefone
+	$scope.excluiTelefone = function(index){
+		debugger
+		var array = $scope.listaTelefones;
+		$scope.listaTelefones = [];
+		for (i =0; i < array.length; i++){
+			if(array[i].txtTelefone !== index){
+				$scope.listaTelefones.push(array[i]);
+			}
 		}
-		
 	}
 
 	//salva correspondente

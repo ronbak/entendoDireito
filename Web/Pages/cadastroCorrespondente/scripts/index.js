@@ -65,9 +65,9 @@
 
 	//popula dropDown de cidades
 	$scope.populaCidades = function(){
-		//debugger
+		debugger
 		if($scope.ddlEstados){
-			$http.get('http://localhost:3001/populaCidades/'+$scope.ddlEstados.id_State)
+			$http.get('http://localhost:3001/populaCidades/'+$scope.ddlEstados.id_estado)
 	        .success(
 	        	function(data) {
 	        		$scope.cidades = [];

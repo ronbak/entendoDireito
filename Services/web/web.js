@@ -15,7 +15,7 @@ function conectaBanco(){
 		host: "localhost",
 		user: "root",
 		password: "root",
-		database: "ned"
+		database: "ned_novo"
 	});
 
 	conn.connect(function(err){
@@ -53,32 +53,38 @@ app.post('/salvar', function(req, res){
 
 //verifica se um email existe
 app.get('/checaEmail/:email', function(req, res){
-	var query = 'SELECT COUNT(*) AS count FROM user WHERE st_email  = "'+req.params.email+'"';
+	var query = 'SELECT COUNT(*) AS count FROM CORRESP_usuario WHERE st_email  = "'+req.params.email+'"';
 	realizaConsulta(query, res);
 });
 
 //popula educacao
 app.get('/populaEducacao/', function(req, res){
-	var query = 'SELECT *  FROM education';
+	var query = 'SELECT *  FROM CORRESP_educacao';
 	realizaConsulta(query, res);
 });
 
 //popula estados
 app.get('/populaEstados/', function(req, res){
-	var query = 'SELECT *  FROM State';
+	var query = 'SELECT *  FROM CORRESP_estado';
 	realizaConsulta(query, res);
 });
 
 //popula cidades pelo estado
 app.get('/populaCidades/:uf', function(req, res){
 	var dados = {uf:req.params.uf};
-	var query = 'SELECT *  FROM City WHERE id_State ='+dados.uf;
+	var query = 'SELECT *  FROM CORRESP_cidade WHERE id_estado ='+dados.uf;
 	realizaConsulta(query, res);
 });
 
 //popula tipo telefone
 app.get('/tipoTelefone/', function(req, res){
-	var query = 'SELECT *  FROM phoneType';
+	var query = 'SELECT *  FROM CORRESP_telefone_tipo';
+	realizaConsulta(query, res);
+});
+
+//popula servicos realizados
+app.get('/areas/Especialidades', function(req, res){
+	var query = 'SELECT * FROM CORRESP_especialidade';
 	realizaConsulta(query, res);
 });
 

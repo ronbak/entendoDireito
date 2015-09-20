@@ -71,18 +71,17 @@
 		    <label >Cidades Atuacao:</label>
 			<div class="form-group" >
 		        <label >Estado:</label>
-		        <select  ng-init="populaEstados()" ng-model="ddlEstados" ng-options="estado.st_state for estado in estados track by estado.id_State" ng-change="populaCidades()" name="ddlEstados" class="form-control">
+		        <select  ng-init="populaEstados()" ng-model="ddlEstados" ng-options="estado.st_estado for estado in estados track by estado.id_estado" ng-change="populaCidades()" name="ddlEstados" class="form-control">
 		        </select>
 		        <label >Cidade:</label>
-		        <select  ng-model="ddlCidade" ng-options="cidade.st_city for cidade in cidades track by cidade.id_City"  name="ddlCidade" ng-change="populaCidadesEscolhidas()" class="form-control">
+		        <select  ng-model="ddlCidade" ng-options="cidade.st_cidade for cidade in cidades track by cidade.id_cidade"  name="ddlCidade" ng-change="populaCidadesEscolhidas()" class="form-control">
 		        </select>
 		        <div class="form-group">
-			        <button ng-repeat="c in cidadesEscolhidas" id="{{c.id_City}}" ng-click="excluiCidade(c.id_City)"  class="btn btn-primary"> 
-			        	{{c.st_city}}
+			        <button ng-repeat="c in cidadesEscolhidas" id="{{c.id_cidade}}" ng-click="excluiCidade(c.id_cidade)"  class="btn btn-primary"> 
+			        	{{c.st_cidade}}
 			        </button>	
 		        </div>
 		    </div>
-
 
 		    <!-- Telefones-->
 		    <label >telefones:</label>
@@ -90,16 +89,31 @@
 		        <label >Numero:</label>
 		        <input type="number"  ng-model="txtTelefone" class="form-control">
 		        <label >Tipo:</label>
-		        <select ng-init="populaTipoTelefone()" ng-model="ddlTipoTelefone" ng-options="tt.st_phoneType for tt in tipoTelefone track by tt.id_phoneType"  name="ddlTipoTelefone"  class="form-control">
+		        <select ng-init="populaTipoTelefone()" ng-model="ddlTipoTelefone" ng-options="tt.st_telefone_tipo for tt in tipoTelefone track by tt.id_telefone_tipo"  name="ddlTipoTelefone"  class="form-control">
 		        </select>
 		        <button class="btn btn-primary" ng-click="populaTelefones()"> Adicionar </button>
 		        <div class="form-group">
 			        <div ng-repeat="t in listaTelefones" id="{{t.txtTelefone}}" > 
-			        	{{t.txtTelefone}} <button id="{{t.txtTelefone}}" class="btn btn-primary"ng-click="excluiTelefone(t.txtTelefone)">remover</button>
+			        	{{t.txtTelefone}} <button id="{{t.txtTelefone}}" class="btn btn-primary" ng-click="excluiTelefone(t.txtTelefone)">remover</button>
 			        </div>	
 		        </div>
 		    </div>
+
+		    <!-- OAB -->
+		    <div class=" form-group">
+		    	Possui OAB? <input id="chkOAB" type="checkbox" ng-model="chkOAB">
+		    	<div id="divOAB" ng-show="chkOAB">
+		    		<label>OAB</label>
+		    		<input type="text" id="txtOAB" class="form-control" name='txtOAB' ng-model='txtOAB'>
+		    		<label >Estado:</label>
+			        <select  ng-init="populaEstados()" ng-model="ddlEstadosOAB" ng-options="estado.st_state for estado in estados track by estado.id_State"  class="form-control">
+			        </select>
+		    	</div>
+		    </div>
 		    
+		    <!-- Areas -->
+
+
 			<button id="btnForm" type="button" class="btn btn-default" ng-click="salvaCorrespondente()"ng-disabled="formCompleto.$invalid">Salvar</button>
 		</form>
 	</body>

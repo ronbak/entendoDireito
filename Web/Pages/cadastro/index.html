@@ -6,6 +6,8 @@
 		<!--frameworks -->
 		<script src="../../Gerals/scripts/jquery-2.1.4.min.js"></script>
 		<script src="../../Gerals/scripts/jquery.validate.js"></script>
+		<script src="../../Gerals/scripts/jquery.mask.js"></script>
+		<script src="../../Gerals/scripts/typeahead.js"></script>
 
 		<!--javascripts -->
 		<script src="scripts/index.js"></script>
@@ -22,11 +24,42 @@
 						</div>
 					</div>
 					<div class="form-group">
+						<label class="col-sm-4 control-label">CPF: </label>
+						<div class="col-sm-5">
+							<input  id="txtCpf" type="text" name='txtCpf' class="form-control" required>
+						</div>
+					</div>
+					<div class="form-group">
 						<label class="col-sm-4 control-label">Nome: </label>
 						<div class="col-sm-5">
 							<input  id="txtNome" type="text" name='txtNome' class="form-control" required>
 						</div>
 					</div>
+
+					<div class="form-group">
+						<label class="col-sm-4 control-label">Estado: </label>
+						<div class="col-sm-5">
+							<select  id="ddlEstadoAtuacao" class="form-control">
+							</select>
+						</div>
+
+					</div>
+
+					<div class="form-group">
+						<label class="col-sm-4 control-label">Cidade: </label>
+						<div class="col-sm-5">
+							<select  id="ddlCidadeAtuacao" class="form-control">
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label">Cidades que atua: </label>
+						<div class="col-sm-5">
+							<input  id="txtCidade" type="text" name='txtCidade' class="form-control typeahead" >
+							
+						</div>
+					</div>
+
 					<button id="btnChecaEmail" type="button" class="btn btn-default">Continuar</button>
 				</form>
 			</div>

@@ -76,6 +76,18 @@ app.get('/populaCidades/:uf', function(req, res){
 	realizaConsulta(query, res);
 });
 
+//lista todas cidades
+app.get('/listaCidades', function(req, res){
+	var query = 'SELECT C.id_cidade, C.st_cidade, E.st_estado FROM  `CORRESP_cidade` C INNER JOIN  `CORRESP_estado` E ON E.id_Estado = C.id_estado';
+	realizaConsulta(query, res);
+});
+
+//procura cidade no typeahead
+app.get('/populaCidadesTypeahead/:nome', function(req, res){
+	var query = 'SELECT C.id_cidade, C.st_cidade, E.st_estado FROM  `CORRESP_cidade` C INNER JOIN  `CORRESP_estado` E ON E.id_Estado = C.id_estado WHERE st_cidade LIKE  "%'+req.params.nome+'%"';
+	realizaConsulta(query, res);
+});
+
 //popula tipo telefone
 app.get('/tipoTelefone/', function(req, res){
 	var query = 'SELECT *  FROM CORRESP_telefone_tipo';

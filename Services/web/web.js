@@ -106,9 +106,9 @@ console.log('executando');
 
 
 function realizaConsulta(query, res){
-
-	var conn = conectaBanco();
 	console.log(query);
+	var conn = conectaBanco();
+	
 	conn.query(query, function(err, rows, fields) {
 
   		if (!err){

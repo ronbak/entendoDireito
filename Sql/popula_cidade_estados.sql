@@ -2980,7 +2980,7 @@ INSERT CORRESP_cidade (id_estado, st_cidade) VALUES
 	(11, 'Couto de Magalhaes de Minas'),
 	(11, 'Crisolia'),
 	(11, 'Crisolita'),
-	(11, 'Crispim Jaques'),
+	(11, 'Crispim Jacques'),
 	(11, 'Cristais'),
 	(11, 'Cristalia'),
 	(11, 'Cristiano Otoni'),
